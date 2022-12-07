@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,300;1,400&display=swap");
+:root {
+  // --bgColor: #0c0c0c;
+  --bgColor: #12151c;
+  // --lightBg: #282d49;
+  // --lightBg: #1c1c1c;
+  --lightBg: #1d2026;
+  --white: #fafafa;
+  --title: #8e97bf;
+  // --primary: #266dd3;
+  --primary: #3fc;
+  // --border: #535572;
+  // --border: #333;
+  --border: #e0f4ff29;
+  --green: #417b5a;
+  --red: #ca1551;
+  --mainFont: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: var(--bgColor);
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
+.error {
+  color: var(--red) !important;
+}
+.appWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+button {
+  // background-color: var(--white);
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  color: var(--white);
+  font-size: 16px;
+  border-radius: 5px;
+  // border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    // background-color: rgb(165, 165, 165);
+  }
+}
