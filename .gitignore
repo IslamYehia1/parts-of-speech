@@ -1,0 +1,16 @@
+
+.vscode/
+
+node_modules/
+build/
+dist/
+tmp/
+temp/
+
+log/*
+!log/.gitkeep 
+*.log
+
+# keep config folder with env files ONLY for demo purposes
+# config/
+# .env
