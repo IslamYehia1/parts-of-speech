@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,300;1,400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,300;1,400&display=swap');
 :root {
   // --bgColor: #0c0c0c;
   --bgColor: #12151c;
@@ -17,7 +17,9 @@
   --border: #e0f4ff29;
   --green: #417b5a;
   --red: #ca1551;
-  --mainFont: "Montserrat", Arial, Helvetica, sans-serif;
+  --mainFont: 'Montserrat', Arial, Helvetica, sans-serif;
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
 }
 
 body {

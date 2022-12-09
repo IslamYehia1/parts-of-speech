@@ -3,8 +3,10 @@ import S from './homepage.module.scss';
 import { useState, useEffect } from 'react';
 import Avatar from '../Avatar';
 import avatars from '../Avatar/avatars';
+import { useNavigate } from 'react-router-dom';
 function Homepage() {
   const now = new Date();
+  const navigate = useNavigate();
   const [scores, setScores] = useState<Array<{}> | null>([
     {
       name: 'islam',
@@ -18,7 +20,7 @@ function Homepage() {
       }),
     },
   ]);
-  const [isExistingTests, setIsExistingTests] = useState(false);
+  const [isExistingGame, setIsExistingGame] = useState(false);
   const [existingName, setExistingName] = useState('');
   const [name, setName] = useState('');
   const [displayError, setDisplayError] = useState(false);
@@ -28,10 +30,11 @@ function Homepage() {
     const localScores = JSON.parse(localStorage.getItem('scoresList')!);
     if (Array.isArray(localScores)) setScores(localScores);
   }, []);
-  function continueTest() {}
-  function restartTest() {}
+  function continueGame() {}
+  function restartGame() {}
   function submit(e: any) {
     e.preventDefault();
+    navigate('/game');
     console.log(name);
   }
   return (
@@ -40,16 +43,16 @@ function Homepage() {
         <span>Part Of Speech</span>
       </h1>
       <div className={S.wrapper}>
-        {isExistingTests && (
-          <div className={S.continueTest}>
-            <h3>Hi {existingName}, You Already have a running test</h3>
+        {isExistingGame && (
+          <div className={S.continueGame}>
+            <h3>Hi {existingName}, You Already have a running game</h3>
             <div className={S.buttons}>
-              <button onClick={() => continueTest()}>Continue</button>
-              <button onClick={() => restartTest()}>Restart Test</button>
+              <button onClick={() => continueGame()}>Continue</button>
+              <button onClick={() => restartGame()}>Restart Game</button>
             </div>
           </div>
         )}
-        {!isExistingTests && (
+        {!isExistingGame && (
           <form className={S.signInForm} onSubmit={submit}>
             <div className={S.avatar}>
               <Avatar />
@@ -60,7 +63,7 @@ function Homepage() {
             </label>
             {displayError && <div className={S.error}>{displayError}</div>}
             <div className={S.startBtnWrapper}>
-              <button className={S.startTestBtn} type="submit">
+              <button className={S.startGameBtn} type="submit">
                 <span>Start Game</span>
               </button>
             </div>
@@ -69,7 +72,7 @@ function Homepage() {
       </div>
       <div className={S.scoresWrapper}>
         <h2>Previous Attempts</h2>
-        {!(scores && scores.length) && <div>You haven't completed any tests yet!</div>}
+        {!(scores && scores.length) && <div>You haven't completed any games yet!</div>}
         <div className={S.scores}>
           {scores &&
             scores.map((score: any) => {

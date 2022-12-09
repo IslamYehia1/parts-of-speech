@@ -1,0 +1,295 @@
+@property --rotate {
+  syntax: '<angle>';
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+.container {
+  position: absolute;
+  bottom: 0;
+  height: auto;
+  min-height: 850px;
+  top: 20px;
+}
+.loaderWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.header {
+  margin-bottom: 40px;
+  position: relative;
+  & > div {
+    display: flex;
+    align-items: center;
+  }
+}
+.avatarWrapper {
+  width: 50px;
+  margin-right: 20px;
+  img {
+    width: 100%;
+  }
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.row > div {
+  display: flex;
+  align-items: center;
+  &:nth-child(2) {
+    justify-content: center;
+  }
+  &:nth-child(3) {
+    justify-content: flex-end;
+  }
+}
+.name {
+  cursor: pointer;
+  transition: background-color padding 0.3s;
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -10px;
+    bottom: -10px;
+    left: -15px;
+    right: -15px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
+  .avatarWrapper {
+    transition: transform 0.3s;
+  }
+  &:hover::before {
+    background-color: var(--bgColor);
+    padding: 10px;
+    .avatarWrapper {
+      // transform: scale(1.1);
+    }
+  }
+}
+.wordWrapper {
+  //   transform: rotateX(35deg);
+  //   transform: rotateX(35deg);
+}
+.word {
+  width: 100%;
+  height: 100%;
+  background: #12151c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.wordCard {
+  // padding: 15% 30%;
+  width: 90%;
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+  position: relative;
+  // top: 50px;
+  background: #12151c;
+  font-family: 'Cormorant Garamond', serif;
+  display: flex;
+  box-sizing: content-box;
+  justify-content: center;
+  align-items: center;
+  // background-color: var(--bgColor);
+  color: var(--white);
+  // width: 45px;
+  // height: 45px;
+  border-radius: 5px;
+  & > div {
+    font-size: 90px;
+  }
+  &::before {
+    content: '';
+    // width: 104%;
+    width: 101%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+    // background-color: #12151c;
+
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    // left: -2%;
+    // left: -1%;
+    animation: spin 2.5s linear infinite;
+  }
+  &::after {
+    position: absolute;
+    content: '';
+    top: calc(var(--card-height) / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(var(--card-height) / 6));
+    background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+    transition: opacity 0.5s;
+    animation: spin 2.5s linear infinite;
+  }
+}
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+.cards {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  // margin-top: -2%;
+  //   top: -20px;
+  // height: 450px;
+  //   height: 500px;
+  //   bottom: 40px;
+  // margin-top: 40px;
+  //   transform: rotateX(35deg);
+  transform: rotateX(25deg);
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 100px;
+}
+.cardsContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.radioBtn {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  margin-right: 17px;
+  &:after {
+    width: 18px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+  }
+  &:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: var(--bgColor);
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+  }
+}
+
+.wordWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-transform: capitalize;
+  gap: 5px;
+  font-weight: 400;
+
+  .letter {
+    // background-color: var(--bgColor);
+    font-family: 'Cormorant Garamond', serif;
+    display: flex;
+    box-sizing: content-box;
+    justify-content: center;
+    align-items: center;
+    // background-color: var(--bgColor);
+    color: var(--white);
+    // width: 45px;
+    // height: 45px;
+    font-size: 90px;
+    border-radius: 5px;
+    // padding: 10px 30px;
+  }
+}
+
+.progressBarWrapper {
+  margin: 30px 0;
+  width: 100%;
+}
+.progressBarWrapper {
+  width: 100%;
+  background: var(--border);
+  height: 2px;
+  box-sizing: border-box;
+}
+.progressBarFull {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(
+    to right,
+    #c0392b,
+    #8e44ad
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  transition: width 1s;
+  position: relative;
+}
+
+@media screen and (max-width: 730px) {
+  .row {
+    flex-wrap: wrap;
+    .name {
+      min-width: 150px;
+    }
+    .title {
+      justify-content: flex-start !important;
+    }
+
+    .gameProgress {
+      justify-content: flex-start !important ;
+      padding-top: 20px;
+    }
+  }
+  .wordWrapper {
+    .letter {
+      padding: 2%;
+      font-size: 7vw;
+    }
+  }
+  .card {
+    // min-width: 200px;
+    margin: 0 -70px;
+    font-size: 16px;
+
+    &:hover {
+    }
+  }
+}
+
+@media screen and (max-height: 850px) {
+  .cards {
+    position: absolute;
+  }
+}
