@@ -1,0 +1,55 @@
+.title {
+  font-family: var(--mainFont);
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+.loader {
+  display: flex;
+  justify-content: center;
+}
+.rankWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 7%;
+}
+.rank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  flex-wrap: wrap;
+  white-space: nowrap;
+  span {
+    font-weight: 500;
+    margin-left: 10px;
+    font-size: 23px;
+  }
+}
+.partyIcon {
+  width: 40px;
+  margin-right: 20px;
+}
+.results {
+  font-family: var(--mainFont);
+  font-size: 24px;
+  & > div {
+    padding: 50px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+  }
+  & > div:first-child {
+    border-top: 1px solid var(--border);
+  }
+}
+.resetBtn {
+  margin-top: 50px;
+  padding: 19px 50px;
+}
+
+.avatar {
+  width: 50px;
+  margin-right: 20px;
+}
