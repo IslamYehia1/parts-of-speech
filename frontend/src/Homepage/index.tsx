@@ -4,9 +4,14 @@ import { useState, useEffect } from 'react';
 import Avatar from '../Avatar';
 import avatars from '../Avatar/avatars';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../Context/users';
 function Homepage() {
   const now = new Date();
   const navigate = useNavigate();
+  const { setName, setAvatar } = useUserContext();
+  useEffect(() => {
+    console.log('WHOHA', setName);
+  }, [setName]);
   const [scores, setScores] = useState<Array<{}> | null>([
     {
       name: 'islam',
@@ -22,20 +27,18 @@ function Homepage() {
   ]);
   const [isExistingGame, setIsExistingGame] = useState(false);
   const [existingName, setExistingName] = useState('');
-  const [name, setName] = useState('');
+  const [nameVal, setNameVal] = useState('');
+  const [avatarVal, setAvatarVal] = useState(0);
   const [displayError, setDisplayError] = useState(false);
-  useEffect(() => {
-    const localName = localStorage.getItem('name');
-    if (localName) setExistingName(existingName);
-    const localScores = JSON.parse(localStorage.getItem('scoresList')!);
-    if (Array.isArray(localScores)) setScores(localScores);
-  }, []);
+
   function continueGame() {}
   function restartGame() {}
   function submit(e: any) {
     e.preventDefault();
+    console.log('WHAT', setName);
+    setName(nameVal);
+    setAvatar(avatarVal);
     navigate('/game');
-    console.log(name);
   }
   return (
     <Container className={S.appWrapper}>
@@ -55,11 +58,21 @@ function Homepage() {
         {!isExistingGame && (
           <form className={S.signInForm} onSubmit={submit}>
             <div className={S.avatar}>
-              <Avatar />
+              <Avatar
+                selected={avatarVal}
+                onSelect={(avatar: any) => {
+                  setAvatarVal(avatar);
+                }}
+              />
             </div>
             <label>
               Your Name
-              <input onChange={(e) => setName(e.target.value)} placeholder="Enter your name" type="text" value={name} />
+              <input
+                onChange={(e) => setNameVal(e.target.value)}
+                placeholder="Enter your name"
+                type="text"
+                value={nameVal}
+              />
             </label>
             {displayError && <div className={S.error}>{displayError}</div>}
             <div className={S.startBtnWrapper}>

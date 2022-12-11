@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,300;1,400&display=swap');
+@font-face {
+  font-family: Laica;
+  src: url('assets/font/LaicaA-Italic.ttf') format('opentype');
+}
 :root {
   // --bgColor: #0c0c0c;
   --bgColor: #12151c;

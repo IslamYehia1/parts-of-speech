@@ -5,6 +5,8 @@ import Homepage from './Homepage';
 import Gamepage from './Gamepage';
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 import './App.css';
+import Results from 'Results';
+import { UserProvider } from 'Context/users';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -14,12 +16,18 @@ const router = createBrowserRouter([
     path: '/game',
     element: <Gamepage />,
   },
+  {
+    path: '/results',
+    element: <Results />,
+  },
 ]);
 
 function App() {
   return (
     <div className="appWrapper">
-      <RouterProvider router={router}></RouterProvider>
+      <UserProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </UserProvider>
     </div>
   );
 }

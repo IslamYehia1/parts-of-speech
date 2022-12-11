@@ -3,11 +3,12 @@ import Loader from 'Loader';
 import { useState } from 'react';
 import S from './results.module.scss';
 import { useUserContext } from '../Context/users';
+import partyPopper from 'assets/images/party-popper.png';
+import avatars from 'Avatar/avatars';
 function Results() {
   const isLoading = useState(false);
   const { name, avatar, score } = useUserContext();
   const [ranking, setRanking] = useState(null);
-
   const [isError, setIsError] = useState(false);
   function reset() {}
   return (
@@ -19,13 +20,13 @@ function Results() {
       {isError && <div>Couldn't get the ranking for now</div>}
       <div className={S.rankWrapper}>
         <div className={S.rank}>
-          <img className={S.partyIcon} src="/assets/party-popper.png" />
+          <img className={S.partyIcon} src={partyPopper} />
           Congratulations! You beat <span>{ranking}</span> % of the submissions
         </div>
       </div>
       <div className={S.results}>
         <div>
-          <img className={S.avatar} src="avatar" />
+          <img className={S.avatar} src={avatars[avatar]} />
           <div>{name}</div>
         </div>
         <div>Your Score : {score}%</div>
