@@ -5,13 +5,12 @@ import Avatar from '../Avatar';
 import avatars from '../Avatar/avatars';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../Context/users';
+import { useGameContext } from 'Context/game';
 function Homepage() {
   const now = new Date();
   const navigate = useNavigate();
-  const { setName, setAvatar } = useUserContext();
-  useEffect(() => {
-    console.log('WHOHA', setName);
-  }, [setName]);
+  const { setName, setAvatar, isRunningGame, name, startGame } = useGameContext();
+
   const [scores, setScores] = useState<Array<{}> | null>([
     {
       name: 'islam',
@@ -25,8 +24,6 @@ function Homepage() {
       }),
     },
   ]);
-  const [isExistingGame, setIsExistingGame] = useState(false);
-  const [existingName, setExistingName] = useState('');
   const [nameVal, setNameVal] = useState('');
   const [avatarVal, setAvatarVal] = useState(0);
   const [displayError, setDisplayError] = useState(false);
@@ -35,9 +32,7 @@ function Homepage() {
   function restartGame() {}
   function submit(e: any) {
     e.preventDefault();
-    console.log('WHAT', setName);
-    setName(nameVal);
-    setAvatar(avatarVal);
+    startGame(nameVal, avatarVal);
     navigate('/game');
   }
   return (
@@ -46,16 +41,16 @@ function Homepage() {
         <span>Part Of Speech</span>
       </h1>
       <div className={S.wrapper}>
-        {isExistingGame && (
+        {isRunningGame && (
           <div className={S.continueGame}>
-            <h3>Hi {existingName}, You Already have a running game</h3>
+            <h3>Hi {name}, You Already have a running game</h3>
             <div className={S.buttons}>
               <button onClick={() => continueGame()}>Continue</button>
               <button onClick={() => restartGame()}>Restart Game</button>
             </div>
           </div>
         )}
-        {!isExistingGame && (
+        {!isRunningGame && (
           <form className={S.signInForm} onSubmit={submit}>
             <div className={S.avatar}>
               <Avatar

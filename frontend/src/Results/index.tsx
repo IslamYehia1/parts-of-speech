@@ -1,13 +1,15 @@
 import Container from 'container/Container';
 import Loader from 'Loader';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import S from './results.module.scss';
 import { useUserContext } from '../Context/users';
 import partyPopper from 'assets/images/party-popper.png';
 import avatars from 'Avatar/avatars';
+import { useGameContext } from 'Context/game';
 function Results() {
   const isLoading = useState(false);
-  const { name, avatar, score } = useUserContext();
+  const { score, words, name, avatar } = useGameContext();
+
   const [ranking, setRanking] = useState(null);
   const [isError, setIsError] = useState(false);
   function reset() {}
