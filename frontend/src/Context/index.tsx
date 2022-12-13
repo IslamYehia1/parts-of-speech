@@ -65,6 +65,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       setStorage([
         { item: 'name', value: name },
         { item: 'avatar', value: avatar },
+        { item: 'words', value: '' },
       ]);
       (async () => {
         const words = await getWords();

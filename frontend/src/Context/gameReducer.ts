@@ -22,6 +22,7 @@ export function gameReducer(state: typeof initialState, action: any) {
       };
     case 'finishGame':
       return {
+        ...state,
         words: [],
         progress: 0,
         currentWord: 0,

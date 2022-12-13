@@ -1,5 +1,7 @@
+import getBaseUrl from 'utils/getBaseUrl';
 export async function getWords() {
-  const rawWords = await fetch('http://localhost:4000/words');
+  const baseUrl = getBaseUrl();
+  const rawWords = await fetch(`${baseUrl}/words`);
   const wordsJson = await rawWords.json();
   return wordsJson;
 }

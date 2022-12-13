@@ -1,11 +1,12 @@
-import Container from 'container/Container';
-import Loader from 'Loader';
 import { useEffect, useState } from 'react';
 import S from './results.module.scss';
+import Container from 'container/Container';
+import Loader from 'Loader';
 import partyPopper from 'assets/images/party-popper.png';
 import avatars from '../Avatars';
 import { useGameContext } from 'Context';
 import { useNavigate } from 'react-router-dom';
+import { fetchRanking } from './fetchRanking';
 function Results() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -17,16 +18,7 @@ function Results() {
     (async () => {
       try {
         setIsLoading(true);
-        const rawRes = await fetch('http://localhost:4000/rank', {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          method: 'POST',
-          body: JSON.stringify({ score: score }),
-        });
-        const rankJson = await rawRes.json();
-        const rank = rankJson.ranking;
+        const rank = await fetchRanking(score);
         setIsLoading(false);
         setRanking(rank);
       } catch (error) {

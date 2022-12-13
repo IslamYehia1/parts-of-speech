@@ -3,9 +3,7 @@ import Gamepage from './Gamepage';
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 import './App.css';
 import Results from 'Results';
-import { UserProvider } from 'Context/users';
 import { GameProvider } from 'Context';
-import { Navigate } from 'react-router-dom';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -27,11 +25,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="appWrapper">
-      <UserProvider>
-        <GameProvider>
-          <RouterProvider router={router}></RouterProvider>
-        </GameProvider>
-      </UserProvider>
+      <GameProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </GameProvider>
     </div>
   );
 }
