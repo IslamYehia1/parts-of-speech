@@ -1,13 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import ReactDOM from 'react-dom/client';
 import Homepage from './Homepage';
 import Gamepage from './Gamepage';
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 import './App.css';
 import Results from 'Results';
 import { UserProvider } from 'Context/users';
-import { GameProvider } from 'Context/game';
+import { GameProvider } from 'Context';
+import { Navigate } from 'react-router-dom';
 const router = createBrowserRouter([
   {
     path: '/',

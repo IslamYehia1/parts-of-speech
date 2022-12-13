@@ -13,16 +13,23 @@
 .avatarsWrapper {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 .avatar {
   width: 80px;
   cursor: pointer;
   position: relative;
   img {
+    transform: scale(0.85);
     width: 100%;
     transition: transform 0.2s;
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1);
+    }
+  }
+  &.chosen {
+    img {
+      transform: scale(1);
     }
   }
   &.chosen::after {
@@ -40,13 +47,10 @@
 }
 
 @media screen and (max-width: 500px) {
-  .avatarsWrapper {
-    align-items: center;
-    .avatar {
-      width: 20%;
-      &.chosen {
-        width: 30%;
-      }
+  .avatar {
+    width: 20%;
+    &.chosen {
+      width: 30%;
     }
   }
 }

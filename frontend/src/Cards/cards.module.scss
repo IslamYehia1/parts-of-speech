@@ -1,16 +1,15 @@
 .cards {
   bottom: 0;
   display: flex;
-  // height: 200px;
+
   padding: 0 50px;
   justify-content: center;
 }
 
 .card {
-  // height: 300px;
   margin: 0 -20px;
   position: relative;
-  // width: 200px;
+
   width: 12vw;
   aspect-ratio: 2/3;
   &:after {
@@ -24,9 +23,9 @@
     right: 0;
     top: 0;
   }
-  // min-width: 200px;
+
   cursor: pointer;
-  // font-size: 22px;
+
   font-size: 28px;
   transform-style: preserve-3d;
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -55,8 +54,6 @@
 }
 
 .cardFace {
-  //   border: 2px solid rgb(0, 255, 255);
-  //   background-color: rgb(40, 46, 57);
   background: inherit;
   backface-visibility: hidden;
 
@@ -71,44 +68,32 @@
   font-weight: 800;
   top: 0;
   transition: 800ms cubic-bezier(0.19, 1, 0.22, 1) transform;
-  // filter: brightness(0.8);
 }
 .card {
   &:nth-child(1) {
     .cardFace {
-      //   background-image: linear-gradient(10deg, #feb692 10%, #ea5455 100%);
-      //   background-image: linear-gradient(10deg, #2a5470 10%, #4c4177 100%);
-      background: url('./13.\ Pale\ Violet\ Red.png') repeat 0 0;
+      background: url('./13.\ Pale\ Violet\ Red.jpg') repeat 0 0;
       background-size: 100% 100%;
       background-repeat: no-repeat;
     }
   }
   &:nth-child(2) {
     .cardFace {
-      // background-image: linear-gradient(10deg, #d8b5ff 10%, #1eae98 100%);
-      //   background-image: linear-gradient(10deg, #09203f 10%, #537895 100%);
-      background: url('./01.\ Royal\ Heath.png') repeat 0 0;
+      background: url('./01.\ Royal\ Heath.jpg') repeat 0 0;
       background-size: 100% 100%;
       background-repeat: no-repeat;
-      //   background-image: linear-gradient(10deg, #fccf31 10%, #f55555 100%);
-      //   background-image: linear-gradient(46deg, #0d324d 10%, #7f5a83 100%);
     }
   }
   &:nth-child(3) {
     .cardFace {
-      //   background-image: linear-gradient(10deg, #81fbb8 10%, #28c76f 100%);
-      //   background-image: linear-gradient(10deg, #09203f 10%, #537895 100%);
-      background: url('./04.\ Hopbush.png') repeat 0 0;
+      background: url('./04.\ Hopbush.jpg') repeat 0 0;
       background-size: 100% 100%;
       background-repeat: no-repeat;
-      //   background-image: linear-gradient(60deg, #380036 10%, #0cbaba 100%);
     }
   }
   &:nth-child(4) {
     .cardFace {
-      //   background-image: linear-gradient(10deg, #2afadf 10%, #4c83ff 100%);
-      //   background-image: linear-gradient(10deg, #09203f 10%, #537895 100%);
-      background: url('./19.\ Can\ Can.png') repeat 0 0;
+      background: url('./11. Fuchsia.png') repeat 0 0;
       background-size: 100% 100%;
       background-repeat: no-repeat;
     }
@@ -129,10 +114,7 @@ $total: 4;
       pointer-events: none;
     }
 
-    // Hover animations should not be triggered on mobile
-    // as the hover animation gets stuck on the latest state
     @media (hover: hover) and (pointer: fine) {
-      //Only trigger hover animations if the cards aren't disabled
       &:not(.disabled):hover {
         z-index: 5;
         transform: translateY(-10%) rotate(0deg) scale(1.3);
@@ -141,12 +123,7 @@ $total: 4;
           animation: fade 250ms ease-out forwards;
         }
         .cardFace {
-          // box-shadow: 0 10px 20px hsla(0, 0%, 0%, 0.4),
-          //   inset 0 0 0 2px hsla($hue, 100%, 80%, 0.75);
         }
-        // &:after {
-        //   top: -175px;
-        // }
       }
     }
   }

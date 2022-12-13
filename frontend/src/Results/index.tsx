@@ -2,17 +2,42 @@ import Container from 'container/Container';
 import Loader from 'Loader';
 import { useEffect, useState } from 'react';
 import S from './results.module.scss';
-import { useUserContext } from '../Context/users';
 import partyPopper from 'assets/images/party-popper.png';
-import avatars from 'Avatar/avatars';
-import { useGameContext } from 'Context/game';
+import avatars from '../Avatars';
+import { useGameContext } from 'Context';
+import { useNavigate } from 'react-router-dom';
 function Results() {
-  const isLoading = useState(false);
-  const { score, words, name, avatar } = useGameContext();
-
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { score, name, avatar, resetGame } = useGameContext();
   const [ranking, setRanking] = useState(null);
   const [isError, setIsError] = useState(false);
-  function reset() {}
+  useEffect(() => {
+    if (!score) return;
+    (async () => {
+      try {
+        setIsLoading(true);
+        const rawRes = await fetch('http://localhost:4000/rank', {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          body: JSON.stringify({ score: score }),
+        });
+        const rankJson = await rawRes.json();
+        const rank = rankJson.ranking;
+        setIsLoading(false);
+        setRanking(rank);
+      } catch (error) {
+        setIsError(true);
+      }
+    })();
+  }, [score]);
+  function reset() {
+    resetGame();
+    navigate('/');
+  }
   return (
     <Container className={S.appWrapper}>
       <h1 className={S.title}>

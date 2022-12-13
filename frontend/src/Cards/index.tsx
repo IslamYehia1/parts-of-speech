@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import S from './cards.module.scss';
-// import * as Multiple from 'multiple.js';
 function Cards(props: any) {
   const [selectedAns, setSelectedAns] = useState(false);
 

@@ -1,35 +1,27 @@
 import Container from '../container/Container';
 import S from './homepage.module.scss';
 import { useState, useEffect } from 'react';
-import Avatar from '../Avatar';
-import avatars from '../Avatar/avatars';
+import Avatar from './Avatars';
 import { useNavigate } from 'react-router-dom';
-import { useUserContext } from '../Context/users';
-import { useGameContext } from 'Context/game';
+import { useGameContext } from 'Context';
+import PrevScores from './PrevScores';
 function Homepage() {
-  const now = new Date();
   const navigate = useNavigate();
-  const { setName, setAvatar, isRunningGame, name, startGame } = useGameContext();
-
-  const [scores, setScores] = useState<Array<{}> | null>([
-    {
-      name: 'islam',
-      avatar: avatars[0],
-      score: '20',
-      date: `${now.getDate()}/${now.getMonth()}/${now.getFullYear()}`,
-      time: now.toLocaleString('en-US', {
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      }),
-    },
-  ]);
+  const { getPrevScores, isRunningGame, name, startGame, resetGame } = useGameContext();
+  const [scores, setScores] = useState([]);
   const [nameVal, setNameVal] = useState('');
   const [avatarVal, setAvatarVal] = useState(0);
   const [displayError, setDisplayError] = useState(false);
-
-  function continueGame() {}
-  function restartGame() {}
+  useEffect(() => {
+    setScores(getPrevScores());
+  }, [getPrevScores]);
+  function continueGame() {
+    navigate('/game');
+  }
+  function restartGame() {
+    resetGame();
+    navigate('/');
+  }
   function submit(e: any) {
     e.preventDefault();
     startGame(nameVal, avatarVal);
@@ -53,12 +45,7 @@ function Homepage() {
         {!isRunningGame && (
           <form className={S.signInForm} onSubmit={submit}>
             <div className={S.avatar}>
-              <Avatar
-                selected={avatarVal}
-                onSelect={(avatar: any) => {
-                  setAvatarVal(avatar);
-                }}
-              />
+              <Avatar selected={avatarVal} onSelect={(avatar: any) => setAvatarVal(avatar)} />
             </div>
             <label>
               Your Name
@@ -81,23 +68,7 @@ function Homepage() {
       <div className={S.scoresWrapper}>
         <h2>Previous Attempts</h2>
         {!(scores && scores.length) && <div>You haven't completed any games yet!</div>}
-        <div className={S.scores}>
-          {scores &&
-            scores.map((score: any) => {
-              return (
-                <div className={S.score}>
-                  <div>
-                    <img className={S.avatar} src={score.avatar} />
-                    <div className={S.name}>{score.name}</div>
-                  </div>
-                  <div>{score.score}%</div>
-                  <div>
-                    On {score.date} At {score.time}
-                  </div>
-                </div>
-              );
-            })}
-        </div>
+        <PrevScores scores={scores} />
       </div>
     </Container>
   );
