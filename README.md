@@ -5,8 +5,7 @@ set of words according to their part of speech.
 
 ## Live demo
 
-The backend is hosted on an azure vm instance with Nginx and PM2 running the backend and github actions for the CI/CD
-[Live demo link](https://part-of-speech.netlify.app/)
+The demo has been deleted
 
 API endpoints :
 [Words Endpoint](https://part-of-speech.westeurope.cloudapp.azure.com/words) : Accepts a get requests with no parameters and returns a list of words
